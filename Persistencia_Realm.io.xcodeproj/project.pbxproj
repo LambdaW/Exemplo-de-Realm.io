@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52BF46551ABCB41300808CFA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BF46541ABCB41300808CFA /* AVFoundation.framework */; };
 		92DE08D01AB7A8A600BB8534 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE08CF1AB7A8A600BB8534 /* main.m */; };
 		92DE08D31AB7A8A600BB8534 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE08D21AB7A8A600BB8534 /* AppDelegate.m */; };
 		92DE08D61AB7A8A600BB8534 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE08D51AB7A8A600BB8534 /* ViewController.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52BF46541ABCB41300808CFA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		92DE08CA1AB7A8A600BB8534 /* Persistencia_Realm.io.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Persistencia_Realm.io.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DE08CE1AB7A8A600BB8534 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92DE08CF1AB7A8A600BB8534 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52BF46551ABCB41300808CFA /* AVFoundation.framework in Frameworks */,
 				92DE08F61AB7A9A100BB8534 /* libc++.dylib in Frameworks */,
 				92DE08F41AB7A96500BB8534 /* Realm.framework in Frameworks */,
 			);
@@ -76,6 +79,7 @@
 		92DE08C11AB7A8A600BB8534 = {
 			isa = PBXGroup;
 			children = (
+				52BF46541ABCB41300808CFA /* AVFoundation.framework */,
 				92DE08F51AB7A9A100BB8534 /* libc++.dylib */,
 				92DE08CC1AB7A8A600BB8534 /* Persistencia_Realm.io */,
 				92DE08E61AB7A8A600BB8534 /* Persistencia_Realm.ioTests */,
@@ -362,6 +366,7 @@
 					"$(PROJECT_DIR)/Persistencia_Realm.io",
 				);
 				INFOPLIST_FILE = Persistencia_Realm.io/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -377,6 +382,7 @@
 					"$(PROJECT_DIR)/Persistencia_Realm.io",
 				);
 				INFOPLIST_FILE = Persistencia_Realm.io/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

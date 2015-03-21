@@ -19,8 +19,8 @@
 + (AlunoSingleton*)sharedInstance;
 
 - (void)salvar:(Aluno *)aluno;
-- (NSArray *)todosAlunos;
+- (NSMutableArray *)todosAlunos;
 - (Aluno *)alunoComTIA:(NSString *)tia;
 - (NSArray *)alunoComNome:(NSString *)nome;
-
+-(void)deletarAluno:(Aluno *)Aluno;
 @end

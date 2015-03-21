@@ -38,7 +38,8 @@ static bool isFirstAccess = YES;
 }
 
 
-- (NSArray *)todosAlunos {
+
+- (NSMutableArray *)todosAlunos {
     RLMResults *resultados = [Aluno allObjects];
     NSMutableArray *alunos = [[NSMutableArray alloc] initWithCapacity:[resultados count]];
     
@@ -49,6 +50,12 @@ static bool isFirstAccess = YES;
     return alunos;
 }
 
+-(void)deletarAluno:(Aluno *)Aluno{
+    RLMRealm *realm = [Aluno realm];
+    [realm beginWriteTransaction];
+    [realm deleteObject:Aluno];
+    [realm commitWriteTransaction];
+}
 
 - (Aluno *)alunoComTIA:(NSString *)tia {
 #warning Implementar - (Aluno *)alunoComTIA:(NSString *)tia

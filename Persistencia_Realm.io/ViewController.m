@@ -10,11 +10,13 @@
 #import "Aluno.h"
 #import "AlunoSingleton.h"
 #import "FotoSingleton.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface ViewController ()
 {
     AlunoSingleton *alunoSingleton;
-    NSArray *alunos;
+    NSMutableArray *alunos;
     Aluno *alunoSelecionado;
     UIToolbar *fotoToolBar;
 }
@@ -40,19 +42,49 @@
     UIBarButtonItem *addFotoItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(vincularFoto)];
     UIBarButtonItem *cancelarEdicao = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelarEdicao)];
     
+    UIBarButtonItem *removerFoto = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(rmFoto)];
+    
+    
 #warning Implementar botao de remocao
     
-    NSArray *itens = @[addFotoItem,cancelarEdicao];
+    
+    NSArray *itens = @[addFotoItem,cancelarEdicao, removerFoto];
     [fotoToolBar setItems:itens];
     
 #warning Captura evento de rotacao de tela para recalcular posicao da toolbar
     [[NSNotificationCenter defaultCenter] addObserver: self selector:   @selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
+    
 }
 
+-(void)rmFoto{
+   // [_nomeTextField resignFirstResponder];
+    //[_tiaTextField resignFirstResponder];
+    
+    alunoSingleton = [AlunoSingleton sharedInstance];
+ //   [alunoSingleton deletarAluno:alunoSelecionado];
+    if (alunoSelecionado) {
+        [alunoSingleton deletarAluno:alunoSelecionado];
+       alunos = [alunoSingleton todosAlunos];
+    
+    
+        
+   } else {
+        Aluno *novoAluno = [[Aluno alloc] init];
+        [novoAluno setNome:_nomeTextField.text];
+        [novoAluno setTia:_tiaTextField.text];
+        
+        [alunoSingleton salvar:novoAluno];
+        alunos = [alunoSingleton todosAlunos];
+                  }
+    
+    
+   [self cancelarEdicao];
+    
+    [_tableView reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+ }
 
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver: self];
@@ -76,6 +108,13 @@
     if (!alunoSelecionado) {
         return;
     }
+    
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    
+    // Add inputs and outputs.
+    
+    [session startRunning];
+    
     UIImage *foto = [UIImage imageNamed:@"smile"];
     [[FotoSingleton sharedInstance] salvarFoto:foto comNome:alunoSelecionado.tia];
     [_tableView reloadData];
@@ -87,7 +126,7 @@
     alunoSelecionado = nil;
     [_botaoSalvar setTitle:@"Salvar" forState:UIControlStateNormal];
     [_tiaTextField setEnabled:YES];
-    [fotoToolBar removeFromSuperview];
+          [fotoToolBar removeFromSuperview];
     [_tableView deselectRowAtIndexPath:[_tableView
                                               indexPathForSelectedRow] animated: YES];
 }
